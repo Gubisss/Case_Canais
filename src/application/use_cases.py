@@ -3,8 +3,8 @@ Application Layer: Handlers
 Handler simples para classificação de texto.
 """
 
-from domain.services import ClassificadorReclamacoes
-from application.dtos import ClassificacaoRequest, ClassificacaoResponse, CategoriaResultado
+from src.domain.services import ClassificadorReclamacoes
+from src.application.dtos import ClassificacaoRequest, ClassificacaoResponse, CategoriaResultado
 
 
 class ClassificacaoHandler:
@@ -72,5 +72,3 @@ class ClassificacaoHandler:
                 tem_erros=True,
                 mensagem_erro=f"Erro na classificação: {str(e)}"
             )
-
-

@@ -2,10 +2,10 @@
 Application Layer __init__.py
 """
 
-from application.dtos import (
+from src.application.dtos import (
     ClassificacaoRequest, ClassificacaoResponse, CategoriaResultado
 )
-from application.use_cases import ClassificacaoHandler
+from src.application.use_cases import ClassificacaoHandler
 
 __all__ = [
     "ClassificacaoRequest",
@@ -13,4 +13,3 @@ __all__ = [
     "CategoriaResultado",
     "ClassificacaoHandler",
 ]
-

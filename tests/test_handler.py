@@ -4,9 +4,9 @@ Testa o handler de classificação do microserviço.
 """
 
 import pytest
-from application.use_cases import ClassificacaoHandler
-from application.dtos import ClassificacaoRequest, ClassificacaoResponse
-from domain.services import ClassificadorReclamacoes
+from src.application.use_cases import ClassificacaoHandler
+from src.application.dtos import ClassificacaoRequest, ClassificacaoResponse
+from src.domain.services import ClassificadorReclamacoes
 
 
 class TestClassificacaoHandler:

@@ -3,10 +3,10 @@ Domain Layer __init__.py
 Exporta principais classes e interfaces do domínio.
 """
 
-from domain.enums import Canal, StatusReclamacao
-from domain.value_objects import DadosCliente
-from domain.entities import CategoriaReclamacao
-from domain.services import ClassificadorReclamacoes, ClassificacaoResultado
+from src.domain.enums import Canal, StatusReclamacao
+from src.domain.value_objects import DadosCliente
+from src.domain.entities import CategoriaReclamacao
+from src.domain.services import ClassificadorReclamacoes, ClassificacaoResultado
 
 __all__ = [
     "Canal",
@@ -16,4 +16,3 @@ __all__ = [
     "ClassificadorReclamacoes",
     "ClassificacaoResultado",
 ]
-

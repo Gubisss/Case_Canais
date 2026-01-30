@@ -5,7 +5,7 @@ Nota: Testes legados, não críticos para o microserviço de classificação.
 """
 
 import pytest
-from domain.services import ClassificadorReclamacoes
+from src.domain.services import ClassificadorReclamacoes
 
 
 class TestClassificadorReclamacoes:

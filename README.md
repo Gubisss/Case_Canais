@@ -33,22 +33,25 @@ Essa abordagem resulta em um sistema resiliente, fácil de testar e pronto para 
 
 ### Estrutura de Pastas
 
+### Estrutura de Pastas
+
 ```
 reclamacoes-system/
-├── domain/                          # Camada de Domínio: Lógica de negócio pura
-│   ├── enums.py                    # Enumerações (Canal, StatusReclamacao)
-│   ├── entities.py                 # Entidades (CategoriaReclamacao)
-│   ├── value_objects.py            # Value Objects (DadosCliente com validações)
-│   ├── services.py                 # Serviços: ClassificadorReclamacoes (NLP core)
-│   └── __init__.py
+├── src/                             # Camada de Negócio (Domain + Application)
+│   ├── domain/                      # Camada de Domínio: Lógica de negócio pura
+│   │   ├── enums.py                # Enumerações (Canal, StatusReclamacao)
+│   │   ├── entities.py             # Entidades (CategoriaReclamacao)
+│   │   ├── value_objects.py        # Value Objects (DadosCliente com validações)
+│   │   ├── services.py             # Serviços: ClassificadorReclamacoes (NLP core)
+│   │   └── __init__.py
+│   │
+│   └── application/                # Camada de Aplicação: Orquestração de casos de uso
+│       ├── dtos.py                 # DTOs (ClassificacaoRequest/Response)
+│       ├── interfaces.py           # Interfaces (contratos)
+│       ├── use_cases.py            # Handlers (ClassificacaoHandler)
+│       └── __init__.py
 │
-├── application/                     # Camada de Aplicação: Orquestração de casos de uso
-│   ├── dtos.py                     # DTOs (ClassificacaoRequest/Response)
-│   ├── interfaces.py               # Interfaces (contratos)
-│   ├── use_cases.py                # Handlers (ClassificacaoHandler)
-│   └── __init__.py
-│
-├── tests/                          # Testes Unitários (100% cobertura)
+├── tests/                          # Camada de Testes (100% cobertura)
 │   ├── test_classificador.py       # Testes do serviço NLP
 │   ├── test_dados_cliente.py       # Testes de value objects e validações
 │   ├── test_handler.py             # Testes do orquestrador
@@ -56,8 +59,16 @@ reclamacoes-system/
 │   ├── conftest.py                 # Configurações e fixtures de testes
 │   └── __init__.py
 │
-├── lambda_handler.py               # Entry point para AWS Lambda
-├── requirements.txt                # Dependências (produção + testes)
+├── diagrams/                       # Documentação Visual
+│   └── fluxo_classificacao.md      # Diagramas Mermaid do fluxo
+│
+├── lambda_handler.py               # Entry point para AWS Lambda (RAIZ)
+├── main.py                         # Script auxiliar (RAIZ)
+├── requirements.txt                # Dependências (produção + testes) (RAIZ)
+├── pytest.ini                      # Configuração do pytest (RAIZ)
+├── README.md                       # Esta documentação (RAIZ)
+└── .gitignore                      # Configuração git (RAIZ)
+```
 ├── pytest.ini                      # Configuração do pytest
 └── README.md                       # Esta documentação
 ```
@@ -80,12 +91,28 @@ reclamacoes-system/
 
 ---
 
+## 📊 Diagramas de Fluxo
+
+Para visualizar o fluxo completo de classificação, detalhamento das estratégias NLP, arquitetura em camadas e tratamento de erros, consulte:
+
+📁 **[diagrams/fluxo_classificacao.md](diagrams/fluxo_classificacao.md)**
+
+Contém 6 diagramas Mermaid interativos:
+1. **Fluxo Principal** - Do evento Lambda até a resposta HTTP
+2. **Estratégias de Matching** - As 3 estratégias NLP com pesos
+3. **Arquitetura em Camadas** - Domain, Application e Entry Point
+4. **Validação de Dados** - Fluxo de validação de entrada
+5. **Normalização de Texto** - Pipeline de preprocessamento
+6. **Tratamento de Erros** - Fluxo de captura e resposta de exceções
+
+---
+
 ## 📐 Estrutura Detalhada - Camada de Domínio
 
 A camada de domínio encapsula a lógica de negócio pura e é totalmente independente de detalhes técnicos.
 
 ```
-domain/
+src/domain/
 ├── enums.py
 │   └── Canal (INTRANET, APPS, RECLAME_AQUI, etc.)
 │   └── StatusReclamacao (PENDENTE, PROCESSADA, etc.)
@@ -124,7 +151,7 @@ domain/
 A camada de aplicação orquestra os casos de uso, conectando o domínio com o mundo externo.
 
 ```
-application/
+src/application/
 ├── dtos.py
 │   ├── ClassificacaoRequest
 │   │   └── texto: str (obrigatório, não vazio)
@@ -296,9 +323,9 @@ print(json.loads(resposta['body']))
 
 **Opção C: Via Handler Aplicação**
 ```python
-from application.use_cases import ClassificacaoHandler
-from domain.services import ClassificadorReclamacoes
-from application.dtos import ClassificacaoRequest
+from src.application.use_cases import ClassificacaoHandler
+from src.domain.services import ClassificadorReclamacoes
+from src.application.dtos import ClassificacaoRequest
 
 classificador = ClassificadorReclamacoes()
 handler = ClassificacaoHandler(classificador)

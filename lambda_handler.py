@@ -5,9 +5,9 @@ Responsável por: entrada -> classificar -> saída
 """
 
 import json
-from domain.services import ClassificadorReclamacoes
-from application.use_cases import ClassificacaoHandler
-from application.dtos import ClassificacaoRequest
+from src.domain.services import ClassificadorReclamacoes
+from src.application.use_cases import ClassificacaoHandler
+from src.application.dtos import ClassificacaoRequest
 
 
 def lambda_handler(event, context):

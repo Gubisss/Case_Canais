@@ -4,7 +4,7 @@ Testa validações de CPF e Email (não é crítico para o microserviço de clas
 """
 
 import pytest
-from domain.value_objects import DadosCliente
+from src.domain.value_objects import DadosCliente
 
 
 class TestDadosCliente:
