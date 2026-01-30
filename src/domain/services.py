@@ -61,7 +61,8 @@ class ClassificadorReclamacoes:
             ],
             "fraude": [
                 "fraude", "roubo", "defraudacao", "transacao nao reconhecida",
-                "clonagem", "cartao clonado", "golpe", "transacao indevida"
+                "clonagem", "cartao clonado", "golpe", "transacao indevida",
+                "roubado", "clonado", "cartao", "bloqueio", "bloqueado"
             ]
         }
     
