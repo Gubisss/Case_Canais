@@ -466,18 +466,4 @@ Considerando volume de **30.000 reclamações/mês** com arquitetura serverless:
 
 ---
 
-## ✨ Características Principais
-
-- ✅ **Puro e Simples** - Apenas classificação, sem API/BD/Persistência
-- ✅ **Rápido** - <100ms por classificação (in-memory)
-- ✅ **Escalável** - Stateless, pronto para autoscaling infinito em Lambda
-- ✅ **Seguro** - Validação rigorosa de entrada, sem dependências externas
-- ✅ **Testado** - 31/31 testes passando (100% cobertura do core)
-- ✅ **Flexível** - Use como Lambda, container Docker, ou função local
-- ✅ **Sem Dependências** - Apenas Python stdlib em produção
-- ✅ **Documentado** - Arquitetura clara, comentários explicativos
-- ✅ **Pronto para Produção** - Integra-se com arquitetura AWS multicanal
-
----
-
 **Desenvolvido por Gustavo Aguilar**
