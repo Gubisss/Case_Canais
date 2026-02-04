@@ -58,6 +58,15 @@ class ClassificacaoHandler:
                         )
                     )
             
+            # Se nenhuma categoria foi encontrada, adiciona categoria padrão
+            if not categorias:
+                categorias.append(
+                    CategoriaResultado(
+                        nome="nao_identificado_encaminhando_para_IA",
+                        confianca=0.0
+                    )
+                )
+            
             return ClassificacaoResponse(
                 texto_original=request.texto,
                 categorias=categorias,

@@ -66,8 +66,7 @@ reclamacoes-system/
 ├── pytest.ini                      # Configuração do pytest (RAIZ)
 ├── README.md                       # Esta documentação (RAIZ)
 └── .gitignore                      # Configuração git (RAIZ)
-├── pytest.ini                      # Configuração do pytest
-└── README.md                       # Esta documentação
+
 ```
 
 ---

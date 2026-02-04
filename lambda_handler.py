@@ -66,8 +66,8 @@ def lambda_handler(event, context):
         # Sucesso
         categorias = [
             {
-                "nome": cat.nome,
-                "confianca": cat.confianca
+                "categoria": cat.nome,
+                "indice_confianca": cat.confianca
             }
             for cat in resposta.categorias
         ]
@@ -127,8 +127,8 @@ def classificar_texto(texto: str) -> dict:
         
         categorias = [
             {
-                "nome": cat.nome,
-                "confianca": cat.confianca
+                "categoria": cat.nome,
+                "indice_confianca": cat.confianca
             }
             for cat in resposta.categorias
         ]
